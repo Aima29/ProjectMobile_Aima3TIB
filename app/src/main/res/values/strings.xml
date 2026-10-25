@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">ProjectMobile_Aima3TIB</string>
+    <string name="deskripsi">Halaman Login</string>
+
+    <!-- Teks Kuliner -->
+    <string name="title_kuliner">🍜 Kuliner Kreatif</string>
+    <string name="cat_kuliner">Subsektor Ekonomi Kreatif #1</string>
+    <string name="desc_kuliner">Kuliner kreatif dalam Ekrafku berfokus pada inovasi resep tradisional, penyajian modern, serta pemasaran digital untuk produk olahan makanan dan minuman lokal agar memiliki nilai jual lebih tinggi.</string>
+
+    <!-- Teks Kriya -->
+    <string name="title_kriya">🎨 Kriya &amp; Kerajinan</string>
+    <string name="cat_kriya">Subsektor Ekonomi Kreatif #2</string>
+    <string name="desc_kriya">Sektor kriya mencakup pembuatan produk berbahan dasar kayu, batu, logam, kulit, kain batik, atau anyaman yang dikerjakan dengan ketelitian tangan bermutu tinggi.</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
