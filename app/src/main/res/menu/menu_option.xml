@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/menu_informasi_ekraf"
+        android:title="Informasi Ekonomi Kreatif" />
+
+    <item
+        android:id="@+id/menu_tentang_aplikasi"
+        android:title="Tentang Aplikasi" />
+
+</menu>

@@ -1,10 +1,10 @@
-
 package com.example.projectmobile_aima3tib.fragments
 
 import android.os.Bundle
 import android.view.View
-import android.widget.SimpleAdapter
 import androidx.fragment.app.Fragment
+import com.example.projectmobile_aima3tib.ProdukEkraf
+import com.example.projectmobile_aima3tib.ProdukEkrafAdapter
 import com.example.projectmobile_aima3tib.R
 import com.example.projectmobile_aima3tib.databinding.FragmentFavouriteBinding
 
@@ -13,38 +13,35 @@ class FavouriteFragment : Fragment(R.layout.fragment_favourite) {
     private var _binding: FragmentFavouriteBinding? = null
     private val binding get() = _binding!!
 
-    override fun onViewCreated(
-        view: View,
-        savedInstanceState: Bundle?
-    ) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         _binding = FragmentFavouriteBinding.bind(view)
 
-        // Data contoh untuk tampilan awal
         val daftarFavorit = listOf(
-            mapOf(
-                "nama" to "Rendang",
-                "deskripsi" to "Kuliner khas Sumatera Barat"
+            ProdukEkraf(
+                "Rendang",
+                "Kuliner khas Sumatera Barat",
+                "Kuliner",
+                R.drawable.rendang
             ),
-            mapOf(
-                "nama" to "Anyaman Rotan",
-                "deskripsi" to "Kerajinan tangan lokal"
+            ProdukEkraf(
+                "Anyaman Rotan",
+                "Kerajinan dari rotan",
+                "Kriya",
+                R.drawable.anyaman
             ),
-            mapOf(
-                "nama" to "Tenun Melayu",
-                "deskripsi" to "Karya fashion lokal"
+            ProdukEkraf(
+                "Tenun Melayu",
+                "Busana berbahan kain tenun",
+                "Fashion",
+                R.drawable.tenun
             )
         )
 
-        val adapter = SimpleAdapter(
+        val adapter = ProdukEkrafAdapter(
             requireContext(),
-            daftarFavorit,
-            android.R.layout.simple_list_item_2,
-            arrayOf("nama", "deskripsi"),
-            intArrayOf(
-                android.R.id.text1,
-                android.R.id.text2
-            )
+            daftarFavorit
         )
 
         binding.listViewFavorit.adapter = adapter

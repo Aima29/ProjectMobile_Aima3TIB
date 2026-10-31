@@ -1,4 +1,3 @@
-
 package com.example.projectmobile_aima3tib
 
 import android.content.Intent
@@ -9,6 +8,7 @@ import android.view.View
 import android.widget.Button
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.PopupMenu
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
@@ -51,6 +51,7 @@ class BaseActivity : AppCompatActivity() {
         setupBottomNavigation()
         setupCategoryChips()
         setupLogout()
+        setupOptionMenu()
 
         if (savedInstanceState == null) {
             binding.bottomNavView.selectedItemId = R.id.menu_home
@@ -59,9 +60,53 @@ class BaseActivity : AppCompatActivity() {
         }
     }
 
+    // Menu option titik tiga
+    private fun setupOptionMenu() {
+        binding.btnOptionMenu.setOnClickListener { view ->
+
+            val popupMenu = PopupMenu(this, view)
+
+            popupMenu.menuInflater.inflate(
+                R.menu.menu_option,
+                popupMenu.menu
+            )
+
+            popupMenu.setOnMenuItemClickListener { item ->
+                when (item.itemId) {
+
+                    R.id.menu_informasi_ekraf -> {
+                        startActivity(
+                            Intent(
+                                this,
+                                WebViewActivity::class.java
+                            )
+                        )
+                        true
+                    }
+
+                    R.id.menu_tentang_aplikasi -> {
+                        startActivity(
+                            Intent(
+                                this,
+                                TentangAplikasiActivity::class.java
+                            )
+                        )
+                        true
+                    }
+
+                    else -> false
+                }
+            }
+
+            popupMenu.show()
+        }
+    }
+
+    // Bottom navigation
     private fun setupBottomNavigation() {
         binding.bottomNavView.setOnItemSelectedListener { item ->
             when (item.itemId) {
+
                 R.id.menu_home -> {
                     tampilkanHalaman(HomeFragment(), true)
                     updateChipStyles(binding.btnChipSemua)
@@ -91,7 +136,11 @@ class BaseActivity : AppCompatActivity() {
     }
 
     private fun aturTampilanHome(tampilkan: Boolean) {
-        val visibility = if (tampilkan) View.VISIBLE else View.GONE
+        val visibility = if (tampilkan) {
+            View.VISIBLE
+        } else {
+            View.GONE
+        }
 
         binding.toolbar.visibility = visibility
         binding.cardBanner.visibility = visibility
@@ -104,7 +153,7 @@ class BaseActivity : AppCompatActivity() {
         binding.btnChipFashion.visibility = visibility
     }
 
-
+    // Category chips
     private fun setupCategoryChips() {
         binding.btnChipSemua.setOnClickListener {
             tampilkanHalaman(HomeFragment(), true)
@@ -116,6 +165,7 @@ class BaseActivity : AppCompatActivity() {
                 DaftarProdukFragment.newInstance("KULINER"),
                 true
             )
+
             updateChipStyles(binding.btnChipKuliner)
         }
 
@@ -124,6 +174,7 @@ class BaseActivity : AppCompatActivity() {
                 DaftarProdukFragment.newInstance("KRIYA"),
                 true
             )
+
             updateChipStyles(binding.btnChipKriya)
         }
 
@@ -132,11 +183,12 @@ class BaseActivity : AppCompatActivity() {
                 DaftarProdukFragment.newInstance("FASHION"),
                 true
             )
+
             updateChipStyles(binding.btnChipFashion)
         }
     }
 
-
+    // Mengatur tampilan category chips
     private fun updateChipStyles(selectedButton: Button) {
         val chips = listOf(
             binding.btnChipSemua,
@@ -158,6 +210,7 @@ class BaseActivity : AppCompatActivity() {
         }
     }
 
+    // Tombol Keluar
     private fun setupLogout() {
         binding.btnLogout.setOnClickListener {
             AlertDialog.Builder(this)
@@ -166,12 +219,20 @@ class BaseActivity : AppCompatActivity() {
                     "Apakah Anda yakin ingin keluar dari aplikasi Ekrafku?"
                 )
                 .setPositiveButton("Ya") { _, _ ->
-                    getSharedPreferences("user_pref", MODE_PRIVATE)
+
+                    getSharedPreferences(
+                        "user_pref",
+                        MODE_PRIVATE
+                    )
                         .edit()
                         .clear()
                         .apply()
 
-                    val intent = Intent(this, LoginActivity::class.java)
+                    val intent = Intent(
+                        this,
+                        LoginActivity::class.java
+                    )
+
                     intent.flags =
                         Intent.FLAG_ACTIVITY_NEW_TASK or
                                 Intent.FLAG_ACTIVITY_CLEAR_TASK
@@ -192,6 +253,7 @@ class BaseActivity : AppCompatActivity() {
         }
     }
 
+    // Memuat fragment
     private fun loadFragment(fragment: Fragment) {
         supportFragmentManager.beginTransaction()
             .replace(R.id.fragment_container, fragment)
