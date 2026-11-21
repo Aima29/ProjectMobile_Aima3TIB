@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="24dp">
+
+    <ImageView
+        android:id="@+id/imgTutorial"
+        android:layout_width="220dp"
+        android:layout_height="220dp"
+        android:scaleType="centerInside"
+        android:contentDescription="Ilustrasi tutorial Ekrafku"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/tvTutorialTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintVertical_bias="0.7" />
+
+    <TextView
+        android:id="@+id/tvTutorialTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Jelajahi Karya Lokal"
+        android:textColor="#5D4037"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:layout_marginTop="24dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/tvTutorialDescription"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintVertical_bias="0.85" />
+
+    <TextView
+        android:id="@+id/tvTutorialDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Kenali berbagai produk kreatif lokal yang memiliki cerita dan keunikan."
+        android:textColor="#8D7770"
+        android:textSize="15sp"
+        android:gravity="center"
+        android:lineSpacingExtra="6dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@id/tvTutorialTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

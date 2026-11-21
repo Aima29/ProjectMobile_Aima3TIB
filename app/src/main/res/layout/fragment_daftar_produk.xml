@@ -1,29 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#FFF8F0"
     android:padding="16dp">
 
-    <TextView
-        android:id="@+id/tvJudulDaftar"
+    <!-- Header kategori -->
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Daftar Karya"
-        android:textColor="#4E342E"
-        android:textSize="22sp"
-        android:textStyle="bold"
-        android:layout_marginBottom="8dp" />
+        android:orientation="vertical"
+        android:paddingStart="4dp"
+        android:paddingEnd="4dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="16dp">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Temukan karya kreatif lokal"
-        android:textColor="#8D6E63"
-        android:textSize="14sp"
-        android:layout_marginBottom="12dp" />
+        <TextView
+            android:id="@+id/tvJudulDaftar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Produk KULINER"
+            android:textColor="#4E342E"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:fontFamily="@font/poppins"
+            android:letterSpacing="0.01" />
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="Temukan karya kreatif lokal"
+            android:textColor="#96796D"
+            android:textSize="13sp"
+            android:fontFamily="@font/poppins" />
+
+    </LinearLayout>
+
+    <!-- Daftar produk -->
     <ListView
         android:id="@+id/listViewKarya"
         android:layout_width="match_parent"

@@ -4,42 +4,44 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#FFF8F0"
+    android:background="#FFF8F1"
     android:padding="16dp">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Karya Favorit"
-        android:textColor="#4E342E"
-        android:textSize="24sp"
-        android:textStyle="bold" />
+        android:textColor="#3E2B2F"
+        android:textSize="23sp"
+        android:textStyle="bold"
+        android:fontFamily="@font/fraunces" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Kumpulan karya yang kamu sukai"
         android:textColor="#8D6E63"
-        android:textSize="14sp"
-        android:layout_marginTop="6dp"
+        android:textSize="12sp"
+        android:layout_marginTop="5dp"
         android:layout_marginBottom="16dp" />
 
-    <ListView
-        android:id="@+id/listViewFavorit"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvFavorit"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:divider="#E8D7CA"
-        android:dividerHeight="1dp"
-        android:clipToPadding="false" />
+        android:clipToPadding="false"
+        android:paddingBottom="12dp"
+        android:overScrollMode="never" />
 
     <TextView
         android:id="@+id/tvFavoritKosong"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:text="Belum ada karya favorit.\nYuk, jelajahi karya lokal!"
         android:textColor="#8D6E63"
-        android:textSize="15sp"
+        android:textSize="14sp"
         android:gravity="center"
         android:padding="24dp"
         android:visibility="gone" />

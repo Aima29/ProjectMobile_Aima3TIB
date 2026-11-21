@@ -1,6 +1,8 @@
+
 package com.example.projectmobile_aima3tib
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -25,6 +27,7 @@ class ProdukEkrafAdapter(
         convertView: View?,
         parent: ViewGroup
     ): View {
+
         val binding = if (convertView == null) {
             ItemProdukEkrafBinding.inflate(
                 LayoutInflater.from(context),
@@ -40,6 +43,31 @@ class ProdukEkrafAdapter(
         binding.tvNamaProduk.text = produk.nama
         binding.tvDeskripsiProduk.text = produk.deskripsi
         binding.ivGambarProduk.setImageResource(produk.gambarResId)
+
+        // Ikon favorit
+        binding.btnFavorit.tag = false
+        binding.btnFavorit.setImageResource(
+            R.drawable.ic_favorite_border
+        )
+
+        binding.btnFavorit.setOnClickListener {
+            val isFavorit = binding.btnFavorit.tag != true
+
+            binding.btnFavorit.tag = isFavorit
+
+            binding.btnFavorit.setImageResource(
+                if (isFavorit) R.drawable.ic_favorite
+                else R.drawable.ic_favorite_border
+            )
+        }
+
+        // Tombol lihat detail
+        binding.btnLihatDetail.setOnClickListener {
+            val intent = Intent(context, DetailActivity::class.java)
+            intent.putExtra("NAMA_PRODUK", produk.nama)
+            intent.putExtra("CATEGORY", produk.kategori)
+            context.startActivity(intent)
+        }
 
         return binding.root
     }

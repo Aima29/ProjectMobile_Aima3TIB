@@ -4,8 +4,9 @@ import android.content.Intent
 import android.content.res.ColorStateList
 import android.graphics.Color
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
-import android.widget.Button
+import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.PopupMenu
@@ -18,14 +19,11 @@ import com.example.projectmobile_aima3tib.fragments.FavouriteFragment
 import com.example.projectmobile_aima3tib.fragments.HomeFragment
 import com.example.projectmobile_aima3tib.fragments.ProfilFragment
 import com.google.android.material.snackbar.Snackbar
+import com.google.android.material.tabs.TabLayout
 
 class BaseActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityBaseBinding
-
-    private val warnaAktif = Color.parseColor("#C94E12")
-    private val warnaNormal = Color.parseColor("#F2E6DC")
-    private val warnaTeks = Color.parseColor("#3E2B2F")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,14 +47,15 @@ class BaseActivity : AppCompatActivity() {
         }
 
         setupBottomNavigation()
-        setupCategoryChips()
+        setupBadge()
+        setupCategoryTabs()
         setupLogout()
         setupOptionMenu()
 
         if (savedInstanceState == null) {
             binding.bottomNavView.selectedItemId = R.id.menu_home
             tampilkanHalaman(HomeFragment(), true)
-            updateChipStyles(binding.btnChipSemua)
+            selectCategoryTab(0)
         }
     }
 
@@ -72,6 +71,7 @@ class BaseActivity : AppCompatActivity() {
             )
 
             popupMenu.setOnMenuItemClickListener { item ->
+
                 when (item.itemId) {
 
                     R.id.menu_informasi_ekraf -> {
@@ -104,12 +104,16 @@ class BaseActivity : AppCompatActivity() {
 
     // Bottom navigation
     private fun setupBottomNavigation() {
+        binding.bottomNavView.isItemActiveIndicatorEnabled = false
+        binding.bottomNavView.itemActiveIndicatorColor = ColorStateList.valueOf(Color.TRANSPARENT)
+
         binding.bottomNavView.setOnItemSelectedListener { item ->
+
             when (item.itemId) {
 
                 R.id.menu_home -> {
                     tampilkanHalaman(HomeFragment(), true)
-                    updateChipStyles(binding.btnChipSemua)
+                    selectCategoryTab(0)
                 }
 
                 R.id.menu_favorit -> {
@@ -127,6 +131,16 @@ class BaseActivity : AppCompatActivity() {
         }
     }
 
+    private fun setupBadge() {
+        val badge = binding.bottomNavView.getOrCreateBadge(R.id.menu_favorit)
+
+        badge.isVisible = true
+        badge.number = 3
+        badge.backgroundColor = Color.parseColor("#E27746")
+        badge.badgeTextColor = Color.WHITE
+    }
+
+    // Menampilkan halaman
     private fun tampilkanHalaman(
         fragment: Fragment,
         tampilkanKomponenHome: Boolean
@@ -135,7 +149,9 @@ class BaseActivity : AppCompatActivity() {
         loadFragment(fragment)
     }
 
+    // Mengatur komponen Home
     private fun aturTampilanHome(tampilkan: Boolean) {
+
         val visibility = if (tampilkan) {
             View.VISIBLE
         } else {
@@ -146,73 +162,73 @@ class BaseActivity : AppCompatActivity() {
         binding.cardBanner.visibility = visibility
         binding.cardSearch.visibility = visibility
         binding.tvSectionTitle.visibility = visibility
-
-        binding.btnChipSemua.visibility = visibility
-        binding.btnChipKuliner.visibility = visibility
-        binding.btnChipKriya.visibility = visibility
-        binding.btnChipFashion.visibility = visibility
+        binding.tabLayoutKategori.visibility = visibility
     }
 
-    // Category chips
-    private fun setupCategoryChips() {
-        binding.btnChipSemua.setOnClickListener {
-            tampilkanHalaman(HomeFragment(), true)
-            updateChipStyles(binding.btnChipSemua)
+    // Setup TabLayout kategori
+    // Kode ini membuat sebuah daftar kategori menggunakan listOf().
+    // Daftar tersebut berisi empat nama kategori yang akan ditampilkan pada TabLayout.
+    private fun setupCategoryTabs() {
+        val tabTitles = listOf("Unggulan", "Kuliner", "Kriya", "Fashion")
+
+        //Bagian ini menggunakan perulangan for untuk memproses setiap tab yang tersedia.
+        for (i in 0 until binding.tabLayoutKategori.tabCount) {
+            val tab = binding.tabLayoutKategori.getTabAt(i)
+            val customView = LayoutInflater.from(this).inflate(R.layout.item_tab_kategori, null) as TextView
+            customView.text = tabTitles.getOrNull(i) ?: tab?.text ?: ""
+            tab?.customView = customView
         }
 
-        binding.btnChipKuliner.setOnClickListener {
-            tampilkanHalaman(
-                DaftarProdukFragment.newInstance("KULINER"),
-                true
-            )
+        binding.tabLayoutKategori.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+            override fun onTabSelected(tab: TabLayout.Tab?) {
+                when (tab?.position) {
+                    0 -> tampilkanHalaman(HomeFragment(), true)
+                    1 -> tampilkanHalaman(DaftarProdukFragment.newInstance("KULINER"), true)
+                    2 -> tampilkanHalaman(DaftarProdukFragment.newInstance("KRIYA"), true)
+                    3 -> tampilkanHalaman(DaftarProdukFragment.newInstance("FASHION"), true)
+                }
+                updateTabStyles()
+            }
 
-            updateChipStyles(binding.btnChipKuliner)
-        }
+            override fun onTabUnselected(tab: TabLayout.Tab?) {
+                updateTabStyles()
+            }
 
-        binding.btnChipKriya.setOnClickListener {
-            tampilkanHalaman(
-                DaftarProdukFragment.newInstance("KRIYA"),
-                true
-            )
+            override fun onTabReselected(tab: TabLayout.Tab?) {}
+        })
 
-            updateChipStyles(binding.btnChipKriya)
-        }
-
-        binding.btnChipFashion.setOnClickListener {
-            tampilkanHalaman(
-                DaftarProdukFragment.newInstance("FASHION"),
-                true
-            )
-
-            updateChipStyles(binding.btnChipFashion)
-        }
+        updateTabStyles()
     }
 
-    // Mengatur tampilan category chips
-    private fun updateChipStyles(selectedButton: Button) {
-        val chips = listOf(
-            binding.btnChipSemua,
-            binding.btnChipKuliner,
-            binding.btnChipKriya,
-            binding.btnChipFashion
-        )
+    private fun selectCategoryTab(position: Int) {
+        val tab = binding.tabLayoutKategori.getTabAt(position)
+        tab?.select()
+        updateTabStyles()
+    }
 
-        chips.forEach { chip ->
-            val selected = chip == selectedButton
+    // Mengatur gaya visual tab (Selected / Unselected)
+    private fun updateTabStyles() {
+        val selectedPosition = binding.tabLayoutKategori.selectedTabPosition
 
-            chip.backgroundTintList = ColorStateList.valueOf(
-                if (selected) warnaAktif else warnaNormal
-            )
+        for (i in 0 until binding.tabLayoutKategori.tabCount) {
+            val tab = binding.tabLayoutKategori.getTabAt(i)
+            val customView = tab?.customView as? TextView ?: continue
 
-            chip.setTextColor(
-                if (selected) Color.WHITE else warnaTeks
-            )
+            if (i == selectedPosition) {
+                customView.setBackgroundResource(R.drawable.bg_tab_selected)
+                customView.setTextColor(Color.WHITE)
+            } else {
+                customView.setBackgroundResource(R.drawable.bg_tab_unselected)
+                customView.setTextColor(Color.parseColor("#3E2B2F"))
+            }
         }
     }
 
     // Tombol Keluar
     private fun setupLogout() {
+
         binding.btnLogout.setOnClickListener {
+
             AlertDialog.Builder(this)
                 .setTitle("Konfirmasi Keluar")
                 .setMessage(
@@ -221,9 +237,7 @@ class BaseActivity : AppCompatActivity() {
                 .setPositiveButton("Ya") { _, _ ->
 
                     getSharedPreferences(
-                        "user_pref",
-                        MODE_PRIVATE
-                    )
+                        "user_pref", MODE_PRIVATE)
                         .edit()
                         .clear()
                         .apply()
@@ -255,6 +269,7 @@ class BaseActivity : AppCompatActivity() {
 
     // Memuat fragment
     private fun loadFragment(fragment: Fragment) {
+
         supportFragmentManager.beginTransaction()
             .replace(R.id.fragment_container, fragment)
             .commit()

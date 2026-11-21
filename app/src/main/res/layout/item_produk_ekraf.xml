@@ -4,21 +4,22 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="8dp"
-    app:cardCornerRadius="12dp"
-    app:cardElevation="3dp">
+    android:layout_marginBottom="12dp"
+    app:cardCornerRadius="18dp"
+    app:cardElevation="3dp"
+    app:cardBackgroundColor="#FFFFFF">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="12dp"
-        android:gravity="center_vertical">
+        android:gravity="center_vertical"
+        android:padding="10dp">
 
         <ImageView
             android:id="@+id/ivGambarProduk"
-            android:layout_width="90dp"
-            android:layout_height="90dp"
+            android:layout_width="112dp"
+            android:layout_height="112dp"
             android:scaleType="centerCrop"
             android:contentDescription="Foto produk"
             android:src="@drawable/ic_launcher_foreground" />
@@ -28,25 +29,66 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:orientation="vertical"
-            android:layout_marginStart="12dp">
+            android:paddingStart="14dp"
+            android:paddingEnd="6dp">
 
-            <TextView
-                android:id="@+id/tvNamaProduk"
+            <!-- Nama produk dan ikon favorit -->
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Nama Produk"
-                android:textColor="#222222"
-                android:textSize="16sp"
-                android:textStyle="bold" />
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/tvNamaProduk"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Nama Produk"
+                    android:textColor="#3E2B2F"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:maxLines="2"
+                    android:ellipsize="end" />
+
+                <ImageButton
+                    android:id="@+id/btnFavorit"
+                    android:layout_width="26dp"
+                    android:layout_height="26dp"
+                    android:padding="4dp"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/ic_favorite_border"
+                    android:scaleType="fitCenter"
+                    android:contentDescription="Tambah favorit" />
+
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/tvDeskripsiProduk"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="6dp"
                 android:text="Deskripsi produk"
-                android:textColor="#666666"
-                android:textSize="14sp" />
+                android:textColor="#8D6E63"
+                android:textSize="12sp"
+                android:maxLines="2"
+                android:ellipsize="end" />
+
+            <!-- Tombol lihat detail -->
+            <TextView
+                android:id="@+id/btnLihatDetail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="9dp"
+                android:background="@drawable/bg_kategori_produk"
+                android:paddingHorizontal="12dp"
+                android:paddingVertical="5dp"
+                android:text="Lihat Detail"
+                android:textColor="#A84B16"
+                android:textSize="11sp"
+                android:textStyle="bold"
+                android:clickable="true"
+                android:focusable="true" />
 
         </LinearLayout>
 

@@ -13,10 +13,11 @@
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="0dp"
-        android:layout_height="48dp"
-        android:background="#FFF5E8"
+        android:layout_height="56dp"
         app:contentInsetStart="0dp"
         app:contentInsetEnd="0dp"
+        app:contentInsetLeft="0dp"
+        app:contentInsetRight="0dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
@@ -90,8 +91,8 @@
         android:id="@+id/cardBanner"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        app:cardBackgroundColor="#C94E12"
+        android:layout_marginTop="16dp"
+        app:cardBackgroundColor="#F6AF8D"
         app:cardCornerRadius="18dp"
         app:cardElevation="0dp"
         app:layout_constraintTop_toBottomOf="@id/toolbar"
@@ -101,6 +102,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/bg_header_wave"
             android:padding="16dp">
 
             <TextView
@@ -109,7 +111,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins"
                 android:text="Selamat datang,\nSobat Ekraf!"
-                android:textColor="#FFFFFF"
+                android:textColor="#594940"
                 android:textSize="19sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
@@ -122,12 +124,15 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
                 android:text="Cerita lokal, inspirasi tak terbatas."
-                android:textColor="#FFE0D0"
+                android:textColor="#FFFFFF"
                 android:textSize="11sp"
-                app:layout_constraintTop_toBottomOf="@id/tvBannerTitle"
-                app:layout_constraintStart_toStartOf="parent"
+                android:fontFamily="@font/poppins"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/ivBannerGraphic"
-                app:layout_constraintBottom_toBottomOf="parent" />
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvBannerTitle"
+                app:layout_constraintVertical_bias="1.0" />
 
             <TextView
                 android:id="@+id/ivBannerGraphic"
@@ -135,11 +140,12 @@
                 android:layout_height="52dp"
                 android:gravity="center"
                 android:text="❊"
-                android:textColor="#E89B77"
+                android:textColor="#E27746"
                 android:textSize="42sp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent" />
+                app:layout_constraintVertical_bias="0.264" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
@@ -148,7 +154,7 @@
         android:id="@+id/cardSearch"
         android:layout_width="0dp"
         android:layout_height="46dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="14dp"
         app:cardBackgroundColor="#FFFFFF"
         app:cardCornerRadius="23dp"
         app:cardElevation="2dp"
@@ -194,101 +200,64 @@
                 android:contentDescription="Filter"
                 android:focusable="true"
                 android:src="@drawable/ic_filter" />
+
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
+    <!-- Judul Jelajahi -->
     <TextView
         android:id="@+id/tvSectionTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="14dp"
-        android:fontFamily="@font/poppins"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="8dp"
+        android:fontFamily="@font/fraunces"
         android:text="Jelajahi karya lokal"
         android:textColor="#3E2B2F"
-        android:textSize="16sp"
+        android:textSize="22sp"
         android:textStyle="bold"
         app:layout_constraintTop_toBottomOf="@id/cardSearch"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <LinearLayout
-        android:id="@+id/categoryContainer"
+    <!-- TabLayout kategori -->
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabLayoutKategori"
         android:layout_width="0dp"
-        android:layout_height="36dp"
-        android:layout_marginTop="8dp"
-        android:orientation="horizontal"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="@android:color/transparent"
+        app:tabIndicatorHeight="0dp"
+        app:tabMode="scrollable"
+        app:tabRippleColor="@null"
+        app:tabPaddingStart="4dp"
+        app:tabPaddingEnd="4dp"
         app:layout_constraintTop_toBottomOf="@id/tvSectionTitle"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnChipSemua"
-            style="@style/Widget.MaterialComponents.Button"
-            android:layout_width="0dp"
-            android:layout_height="36dp"
-            android:layout_weight="1"
-            android:layout_marginEnd="3dp"
-            android:minWidth="0dp"
-            android:minHeight="0dp"
-            android:paddingHorizontal="1dp"
-            android:text="Unggulan"
-            android:textAllCaps="false"
-            android:textColor="#FFFFFF"
-            android:textSize="12sp"
-            app:backgroundTint="#C94E12"
-            app:cornerRadius="18dp" />
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Unggulan" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnChipKuliner"
-            style="@style/Widget.MaterialComponents.Button"
-            android:layout_width="0dp"
-            android:layout_height="36dp"
-            android:layout_weight="1"
-            android:layout_marginHorizontal="3dp"
-            android:minWidth="0dp"
-            android:minHeight="0dp"
-            android:paddingHorizontal="1dp"
-            android:text="Kuliner"
-            android:textAllCaps="false"
-            android:textColor="#3E2B2F"
-            android:textSize="12sp"
-            app:backgroundTint="#F2E6DC"
-            app:cornerRadius="18dp" />
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Kuliner" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnChipKriya"
-            style="@style/Widget.MaterialComponents.Button"
-            android:layout_width="0dp"
-            android:layout_height="36dp"
-            android:layout_weight="1"
-            android:layout_marginHorizontal="3dp"
-            android:minWidth="0dp"
-            android:minHeight="0dp"
-            android:paddingHorizontal="1dp"
-            android:text="Kriya"
-            android:textAllCaps="false"
-            android:textColor="#3E2B2F"
-            android:textSize="12sp"
-            app:backgroundTint="#F2E6DC"
-            app:cornerRadius="18dp" />
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Kriya" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnChipFashion"
-            style="@style/Widget.MaterialComponents.Button"
-            android:layout_width="0dp"
-            android:layout_height="36dp"
-            android:layout_weight="1"
-            android:layout_marginStart="3dp"
-            android:minWidth="0dp"
-            android:minHeight="0dp"
-            android:paddingHorizontal="1dp"
-            android:text="Fashion"
-            android:textAllCaps="false"
-            android:textColor="#3E2B2F"
-            android:textSize="12sp"
-            app:backgroundTint="#F2E6DC"
-            app:cornerRadius="18dp" />
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Fashion" />
 
-    </LinearLayout>
+    </com.google.android.material.tabs.TabLayout>
 
     <FrameLayout
         android:id="@+id/fragment_container"
@@ -296,7 +265,7 @@
         android:layout_height="0dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="4dp"
-        app:layout_constraintTop_toBottomOf="@id/categoryContainer"
+        app:layout_constraintTop_toBottomOf="@id/tabLayoutKategori"
         app:layout_constraintBottom_toTopOf="@id/bottom_nav_view"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -308,7 +277,7 @@
         android:background="#FFFFFF"
         app:itemIconTint="@color/bottom_nav_tint"
         app:itemTextColor="@color/bottom_nav_tint"
-        app:labelVisibilityMode="unlabeled"
+        app:itemRippleColor="#F4B9B5"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

@@ -30,9 +30,6 @@
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".MainActivity"
-            android:exported="false" />
-        <activity
             android:name=".DetailActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
@@ -46,6 +43,10 @@
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".TentangAplikasiActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".TutorialActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
     </application>

@@ -1,3 +1,4 @@
+
 package com.example.projectmobile_aima3tib
 
 import android.content.Intent
@@ -21,6 +22,7 @@ class SplashScreen : AppCompatActivity() {
 
         // Menyesuaikan tampilan agar tidak tertutup status bar dan navigation bar
         val mainView = findViewById<android.view.View>(R.id.main)
+
         if (mainView != null) {
             ViewCompat.setOnApplyWindowInsetsListener(mainView) { v, insets ->
                 val systemBars = insets.getInsets(
@@ -40,9 +42,10 @@ class SplashScreen : AppCompatActivity() {
 
         // Tampilkan splash screen selama 2 detik sebelum pindah halaman
         Handler(Looper.getMainLooper()).postDelayed({
+
             if (isFinishing || isDestroyed) return@postDelayed
 
-            // Mengambil status login dari SharedPreferences
+            // Mengambil status login dan tutorial dari SharedPreferences
             val sharedPref = getSharedPreferences(
                 "user_pref",
                 MODE_PRIVATE
@@ -53,14 +56,32 @@ class SplashScreen : AppCompatActivity() {
                 false
             )
 
-            val intent = if (isLogin) {
-                Intent(this@SplashScreen, BaseActivity::class.java)
-            } else {
-                Intent(this@SplashScreen, LoginActivity::class.java)
+            val tutorialCompleted = sharedPref.getBoolean(
+                "tutorialCompleted",
+                false
+            )
+
+            // Menentukan halaman tujuan
+            val intent = when {
+                isLogin -> Intent(
+                    this@SplashScreen,
+                    BaseActivity::class.java
+                )
+
+                !tutorialCompleted -> Intent(
+                    this@SplashScreen,
+                    TutorialActivity::class.java
+                )
+
+                else -> Intent(
+                    this@SplashScreen,
+                    LoginActivity::class.java
+                )
             }
 
             startActivity(intent)
             finish()
+
         }, 2000)
     }
 }

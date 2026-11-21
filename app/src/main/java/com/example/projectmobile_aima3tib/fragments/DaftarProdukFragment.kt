@@ -32,55 +32,64 @@ class DaftarProdukFragment : Fragment(R.layout.fragment_daftar_produk) {
                 "Rendang",
                 "Kuliner khas Sumatera Barat",
                 "Kuliner",
-                R.drawable.rendang
+                R.drawable.rendang,
+                "12k Menyukai"
             ),
             ProdukEkraf(
                 "Pempek",
                 "Olahan ikan khas Palembang",
                 "Kuliner",
-                R.drawable.pempek
+                R.drawable.pempek,
+                "10k Menyukai"
             ),
             ProdukEkraf(
                 "Gulai Ikan Patin",
                 "Kuliner khas Riau",
                 "Kuliner",
-                R.drawable.gulaipatin
+                R.drawable.gulaipatin,
+                "15k Menyukai"
             ),
             ProdukEkraf(
                 "Anyaman Rotan",
                 "Kerajinan dari rotan",
                 "Kriya",
-                R.drawable.anyaman
+                R.drawable.anyaman,
+                "100k Menyukai"
             ),
             ProdukEkraf(
                 "Aksesori Lokal",
                 "Aksesori buatan pengrajin",
                 "Kriya",
-                R.drawable.aksesoris
+                R.drawable.aksesoris,
+                "120k Menyukai"
             ),
             ProdukEkraf(
                 "Ukiran Kayu",
                 "Kerajinan seni ukir",
                 "Kriya",
-                R.drawable.ukirankayu
+                R.drawable.ukirankayu,
+                "10k Menyukai"
             ),
             ProdukEkraf(
                 "Batik Fashion",
                 "Busana bermotif batik",
                 "Fashion",
-                R.drawable.bajubatik
+                R.drawable.bajubatik,
+                "125k Menyukai"
             ),
             ProdukEkraf(
                 "Tenun Melayu",
                 "Busana berbahan kain tenun",
                 "Fashion",
-                R.drawable.tenun
+                R.drawable.tenun,
+                "5k Menyukai"
             ),
             ProdukEkraf(
                 "Batik",
                 "Karya seni pada kain",
                 "Fashion",
-                R.drawable.batik
+                R.drawable.batik,
+                "15k Menyukai"
             )
         )
 
